@@ -1,0 +1,122 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px;  background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opapublisher-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+
+    <div class="col-lg-12 col-lg-12">
+
+      <div class="col-xl-12 order-xl-1">
+        <div class="card bg-secondary shadow" >
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">Book list</h3>
+              </div>
+
+            </div>
+          </div>
+          <div class="card-body">
+            <section class="bgwhite p-t-55 p-b-65">
+              <div class="container">
+                <div class="row">
+
+                  <div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
+                    <div class="leftbar p-r-20 p-r-0-sm">
+                      <!--  -->
+                      <h4 class="m-text14 p-b-7">
+                        Categories
+                      </h4>
+
+                      <ul class="p-b-54">
+                        <li class="p-t-4" *ngFor="let item of categories | enumToArray">
+                          <a (click)="selectCategorty(item.name)"  class="s-text13 active1">
+                           {{item.name}}
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
+                    <!--  -->
+                    <div class="flex-sb-m flex-w p-b-35">
+                      <div class="flex-w">
+                        <div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
+                          <select class="selection-2" name="sorting" [ngModel]="sort" (change)="onSort($event)">
+                            <option value="price"  >Price: low to high</option>
+                            <option value="price,desc">Price: high to low</option>
+                            <option value="createdAt,desc">New</option>
+                            <option value="createdAt">Old</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div *ngIf="books">
+                 <span class="s-text8 p-t-5 p-b-5" *ngIf=" books.totalElements">
+						     	Showing {{books.pageable.offset  + books.numberOfElements}} of {{books.totalElements}} results
+					     	</span>
+                      </div>
+
+                    </div>
+
+                    <!-- Product -->
+                    <div class="row" *ngIf="books">
+
+
+                      <div class="col-sm-12 col-md-6 col-lg-4 p-b-50" *ngFor="let book of books.content">
+                        <!-- Block2 -->
+                        <div class="block2">
+                          <div class="block2-img wrap-pic-w of-hidden pos-relative">
+                            <img src= "{{book.photoPath | defaultImageBook}}" style=" border: 1px ;height:210px!important;width:200px!important;" alt="IMG-PRODUCT">
+
+                            <div class="block2-overlay trans-0-4">
+                              <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+                                <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+                                <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+                              </a>
+
+                              <div class="block2-btn-addcart w-size1 trans-0-4">
+                                <!-- Button -->
+                                <button (click)="addToCard(book)"
+                                        class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+
+                                  Add to Cart
+                                </button>
+
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="block2-txt p-t-20">
+                            <a [routerLink]="['/details-book',book.id]" class="block2-name dis-block s-text3 p-b-5">
+                             {{book.name}}
+                            </a>
+                            <div class="block2-txt p-t-20">
+                            <span class="block2-price m-text6 p-r-5">
+										{{book.genre | lowercase}}
+									</span>
+                            </div>
+                            <span class="block2-price m-text6 p-r-5">
+										{{book.price}} TND
+									</span>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                    </div>
+
+                    <!-- Pagination -->
+                    <nz-pagination *ngIf="books" [nzPageIndex]=currentPage  [nzTotal]=books.totalElements  [nzPageSize]=sizePage (nzPageIndexChange)="paginate($event)"></nz-pagination>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

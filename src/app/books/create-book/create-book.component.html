@@ -1,0 +1,114 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px;  background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opapublisher-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+
+    <div class="col-lg-12 col-lg-12">
+
+      <div class="col-xl-8 order-xl-1">
+        <div class="card bg-secondary shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">Book details</h3>
+              </div>
+
+            </div>
+          </div>
+          <div class="card-body">
+            <form id=create-book-form [formGroup]="createBook" >
+              <h6 class="heading-small text-muted mb-4">Book information</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-Name">Name</label>
+                      <input  formControlName= "name" type="text" id="input-Name" class="form-control form-control-alternative" placeholder="Name" >
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-genre">Categories</label>
+                      <!-- Category -->
+                      <div class="sidebar-widget">
+                        <select formControlName= "genre" class="selectpicker default input-genre" id="input-genre" name="input-genre" data-selected-text-format="count" title="All Categories" >
+                          <option *ngFor="let item of categories | enumToArray">{{item.name}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-price">Price</label>
+                      <input type="number" formControlName="price" id="input-price" class="form-control form-control-alternative">
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" >Realse Date</label>
+                      <nz-date-picker (click)="onChange($event)" formControlName="releaseDate" [nzFormat]="dateFormat"></nz-date-picker>
+                      <br />
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <hr class="my-4" />
+              <!-- Auther -->
+              <h6 class="heading-small text-muted mb-4">General information</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-Auther">author</label>
+                      <input formControlName="author" id="input-Auther" class="form-control form-control-alternative" placeholder="Auther" type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-publisher">publisher</label>
+                      <input formControlName="publisher" type="text" id="input-publisher" class="form-control form-control-alternative" placeholder="publisher" >
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <hr class="my-4" />
+              <!-- Description -->
+              <h6 class="heading-small text-muted mb-4">Description</h6>
+              <div class="pl-lg-4">
+                <div class="form-group">
+                  <label>Description</label>
+                  <textarea formControlName="description" rows="4" class="form-control form-control-alternative" placeholder="A few words about your book ..."></textarea>
+                </div>
+              </div>
+              <div class="col-xl-12">
+                <div class="submit-field">
+
+                  <div class="uploadButton margin-top-30">
+                    <input class="uploadButton-input" type="file" accept="image/*" id="upload" (change)="onFileSelect($event)" />
+                    <label class="uploadButton-button ripple-effect" for="upload">Upload Image</label>
+
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="col-xl-12">
+              <button type="submit" (click)="onSubmit()" class="button ripple-effect big margin-top-30" form="create-book-form">
+                <i class="icon-feather-plus"></i>add book</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 mr-auto ml-auto">
+      <div class="panel panel-default">
+        <form (ngSubmit)="pay(customStripeForm)" [formGroup]="customStripeForm">
+          <div class="panel-body mt-5">
+            <h4>One more step to buy your books ! </h4>
+            <p><b>{{ message }}</b></p>
+            <div class="row">
+              <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                  <label>CARD NUMBER</label>
+                  <div class="input-group">
+                    <input class="form-control" formControlName="cardNumber" maxlength="18" name="cardNumber"
+                           placeholder="Valid Card Number" type="text"/>
+                    <span class="input-group-addon">
+                      <span class="fa fa-credit-card"></span>
+                    </span>
+                  </div>
+                  <div *ngIf="submitted && customStripeForm.controls.cardNumber.errors" class="text-danger">
+                    <div *ngIf="customStripeForm.controls.cardNumber.errors.required">Card number is required</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-7 col-md-7">
+                <div class="form-group">
+                  <label><span class="hidden-xs">EXPIRATION</span> Date</label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <select class="form-control" formControlName="expMonth">
+                          <option value="">Select Month</option>
+                          <option value="1">01</option>
+                          <option value="2">02</option>
+                          <option value="3">03</option>
+                          <option value="4">04</option>
+                          <option value="5">05</option>
+                          <option value="6">06</option>
+                          <option value="7">07</option>
+                          <option value="8">08</option>
+                          <option value="9">09</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6 pull-right">
+                      <div class="form-group">
+                        <select class="form-control" formControlName="expYear">
+                          <option value="">Select Year</option>
+                          <option value="20">2020</option>
+                          <option value="21">2021</option>
+                          <option value="22">2022</option>
+                          <option value="23">2023</option>
+                          <option value="24">2024</option>
+                          <option value="25">2025</option>
+                          <option value="26">2026</option>
+                          <option value="27">2027</option>
+                          <option value="28">2028</option>
+                          <option value="29">2029</option>
+                          <option value="30">2030</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div *ngIf="submitted && customStripeForm.controls.expMonth.errors" class="text-danger">
+                    <div *ngIf="customStripeForm.controls.expMonth.errors.required">Expiration month is required</div>
+                  </div>
+
+                  <div *ngIf="submitted && customStripeForm.controls.expYear.errors" class="text-danger">
+                    <div *ngIf="customStripeForm.controls.expYear.errors.required">Expiration year is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-5 col-md-5 pull-right">
+                <div class="form-group">
+                  <label>CV CODE</label>
+                  <input class="form-control" formControlName="cvv" maxlength="4" placeholder="CVC" type="text"/>
+                </div>
+                <div *ngIf="submitted &&  customStripeForm.controls.cvv.errors" class="text-danger">
+                  <div *ngIf="customStripeForm.controls.cvv.errors.required">CVV is required</div>
+                  <div *ngIf="customStripeForm.controls.cvv.errors.minlength">CVV must be at least 3 characters</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-xs-12 col-md-12">
+                <button *ngIf="!formProcess" class="btn btn-warning btn-lg btn-block">Process payment</button>
+                <span *ngIf="formProcess" class="btn btn-warning btn-lg btn-block">Processing please wait...</span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

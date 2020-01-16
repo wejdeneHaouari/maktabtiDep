@@ -1,0 +1,41 @@
+<app-empty-shopping-bag *ngIf="empty"></app-empty-shopping-bag>
+
+<div *ngIf="!empty">
+  <h6 class="text-overflow m-0">My Shopping Bag</h6>
+  <div>
+    <ul>
+      <li *ngFor="let book of myBooks;let i = index" class="header-cart-item">
+        <div class="header-cart-item-img">
+          <img alt="Image Alternative text" src="{{book.photoPath | defaultImageBook}}" title="Image Title"/>
+        </div>
+        <div class="header-cart-item-txt">
+          <a class="header-cart-item-name">
+            {{book.product.name}}
+            <a (click)="removeBook(i)" class="btn"> <i class="ni ni-fat-remove" style="font-size: 30px"></i> </a>
+
+          </a>
+          <span class="header-cart-item-info">
+										{{book.quantity}} *  {{book.price}}
+										</span>
+
+
+        </div>
+      </li>
+    </ul>
+    <div class="header-cart-total">
+      {{total()}} TND
+    </div>
+
+    <div class="header-cart-buttons">
+
+      <div class="header-cart-wrapbtn">
+        <!-- Button -->
+        <a [queryParams]="{amount: this.total()}" [routerLink]="['/checkout']"
+           class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+          Check Out
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>

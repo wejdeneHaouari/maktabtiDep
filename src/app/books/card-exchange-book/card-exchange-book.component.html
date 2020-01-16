@@ -1,0 +1,72 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->  <div class="container-fluid d-flex align-items-center">
+      <div class="row">
+        <div class="col-lg-7 col-md-10">
+          <a [routerLink]="['/request']" class="btn btn-info">Send Request</a>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">My exchanges</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">Book</th>
+              <th scope="col">Genre</th>
+              <th scope="col">Author</th>
+              <th scope="col">View Requests</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let book of books.content">
+              <th scope="row">
+                <div class="media align-items-center">
+                  <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
+                    <img alt="Image placeholder" src="{{book.photoPath | defaultImageBook}}">
+                  </a>
+                  <div class="media-body">
+                    <span class="mb-0 text-sm">{{book.name}}</span>
+                  </div>
+                </div>
+              </th>
+              <td>
+                {{book.genre}}
+              </td>
+              <td>
+
+                    {{book.author}}
+
+              </td>
+              <td>
+                <a (click)="viewRequest(book)"  class="btn btn-info">View Requests</a>
+              </td>
+
+
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <nz-pagination [nzPageIndex]=currentPage  [nzTotal]=books.totalElements  [nzPageSize]=sizePage (nzPageIndexChange)="paginate($event)"></nz-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

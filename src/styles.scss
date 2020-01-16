@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+  margin: 0 0 0 !important;
+  .page-content{
+    padding-top: 50px;
+  }
+  a{
+    cursor: pointer ;
+  }
+  .cross{
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      height: 2px;
+      width: 16px;
+      top: 8px;
+      right: 2px;
+      background: #000;
+    }
+    &::before{
+      transform: rotate(45deg);
+    }
+    &::after{
+      transform: rotate(-45deg);
+    }
+  }
+}
+@import '~ngx-toastr/toastr';
+

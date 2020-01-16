@@ -1,0 +1,51 @@
+<div class="header pb-3 pt-5 pt-lg-8 d-flex align-items-center" >
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row" *ngIf="chapter">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white">{{chapter.story.name}}</h1>
+        <p class="text-white mt-0 mb-5">{{chapter.story.description}}</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--4">
+  <div class="row" *ngIf="chapter">
+    <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0" style="position: center">
+      <div class="card card-profile shadow">
+
+        <div class="card-body pt-0 pt-md-4" >
+
+          <div class="text-center">
+            <h3>
+              {{chapter.name}}
+            </h3>
+
+            <hr class="my-4" />
+            <div [innerHtml]="content | keepHtml "></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+  <div class="row" *ngIf="!chapter">
+    <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0" style="position: center">
+      <div class="card card-profile shadow">
+
+        <div class="card-body pt-0 pt-md-4" >
+
+          <div class="text-center">
+            <h3>Chapter Not Found</h3>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

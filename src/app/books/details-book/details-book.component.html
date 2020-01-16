@@ -1,0 +1,69 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white">Book details</h1>
+        <p class="text-white mt-0 mb-5">This is book details page. You can see the reviews and description of a book </p>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7" *ngIf="selectedBook">
+
+    <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="row justify-content-center">
+          <div class="col-lg-3 order-lg-2">
+            <div class="card-profile-image">
+              <a href="javascript:void(0)">
+                <img src="{{selectedBook.photoPath | defaultImageBook}}" class="circle">
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body pt-0 pt-md-4">
+          <div class="row">
+            <div class="col">
+              <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                <div>
+                  <span class="heading">22</span>
+                  <span class="description">Likes</span>
+                </div>
+                <div>
+                  <span class="heading">10</span>
+                  <span class="description">Dislike</span>
+                </div>
+                <div>
+                  <span class="heading">89</span>
+                  <span class="description">Review</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <h3>
+              {{selectedBook.name}}
+            </h3>
+            <div class="h5 font-weight-300">
+              <i class="ni location_pin mr-2"></i>{{selectedBook.author}}
+            </div>
+            <div class="h5 mt-4">
+              <i class="ni business_briefcase-24 mr-2"></i>{{selectedBook.createdAt | date}}
+            </div>
+            <div>
+              <i class="ni education_hat mr-2"></i>{{selectedBook.genre}}
+            </div>
+            <hr class="my-4" />
+            <p *ngIf="selectedBook.description">{{selectedBook.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+</div>
